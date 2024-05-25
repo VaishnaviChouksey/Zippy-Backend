@@ -15,6 +15,10 @@ app.use(express.json());
 
 app.use("/api/auth",userRoutes);     
 app.use("/api/messages",messageRoutes);     
+
+app.get('*', (req, res) =>
+    res.sendFile(path.resolve('build', 'index.html'))
+  );
   
 mongoose.connect(process.env.MONGO_URL)
 .then(()=>{console.log("DB Connection Successfull");
@@ -51,4 +55,5 @@ socket.on("send-msg",(data)=>{
     }
 });
 });
+
 
